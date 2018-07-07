@@ -56,6 +56,18 @@ namespace Utf8 {
          */
         Utf8();
 
+        /**
+         * This method encodes the given sequence of Unicode code
+         * points into UTF-8.
+         *
+         * @param[in] codePoints
+         *     These are the Unicode code points to encode.
+         *
+         * @return
+         *     The UTF-8 encoding of the given Unicode code points is returned.
+         */
+        std::vector< uint8_t > Encode(const std::vector< UnicodeCodePoint >& codePoints);
+
         // Private properties
     private:
         /**

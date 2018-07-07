@@ -30,4 +30,12 @@ namespace Utf8 {
     {
     }
 
+    std::vector< uint8_t > Utf8::Encode(const std::vector< UnicodeCodePoint >& codePoints) {
+        std::vector< uint8_t > encoding;
+        for (auto codePoint: codePoints) {
+            encoding.push_back((UnicodeCodePoint)(codePoint & 0x7F));
+        }
+        return encoding;
+    }
+
 }
