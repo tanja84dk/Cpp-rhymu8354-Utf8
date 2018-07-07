@@ -37,7 +37,7 @@ namespace Utf8 {
     /**
      * This class is used to encode or decode Unicode "code points",
      * or characters from many different international character sets,
-     *  in order to store or transmit them across any interface
+     * in order to store or transmit them across any interface
      * that accepts a sequence of bytes.
      */
     class Utf8 {
