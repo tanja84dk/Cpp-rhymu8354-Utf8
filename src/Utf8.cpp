@@ -10,6 +10,13 @@
 
 namespace Utf8 {
 
+    std::vector< UnicodeCodePoint > AsciiToUnicode(const std::string& ascii) {
+        return std::vector< UnicodeCodePoint >(
+            ascii.begin(),
+            ascii.end()
+        );
+    }
+
     /**
      * This contains the private properties of a Utf8 instance.
      */
