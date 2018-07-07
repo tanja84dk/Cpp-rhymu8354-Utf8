@@ -26,8 +26,11 @@ TEST(Utf8Tests, EncodeAscii) {
 
 TEST(Utf8Tests, Symbols) {
     Utf8::Utf8 utf8;
-    const std::vector< uint8_t > expectedEncoding{ 0x41, 0xE2, 0x89, 0xA2, 0xCE, 0x91, 0x2E };
-    const auto actualEncoding = utf8.Encode({0x0041, 0x2262, 0x0391, 0x002E}); // A≢Α.
+    std::vector< uint8_t > expectedEncoding{ 0x41, 0xE2, 0x89, 0xA2, 0xCE, 0x91, 0x2E };
+    auto actualEncoding = utf8.Encode({0x0041, 0x2262, 0x0391, 0x002E}); // A≢Α.
+    ASSERT_EQ(expectedEncoding, actualEncoding);
+    expectedEncoding = { 0xE2, 0x82, 0xAC };
+    actualEncoding = utf8.Encode({0x20AC}); // €.
     ASSERT_EQ(expectedEncoding, actualEncoding);
 }
 
