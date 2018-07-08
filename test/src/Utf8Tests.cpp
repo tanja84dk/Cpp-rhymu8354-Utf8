@@ -30,7 +30,7 @@ TEST(Utf8Tests, Symbols) {
     auto actualEncoding = utf8.Encode({0x0041, 0x2262, 0x0391, 0x002E}); // A≢Α.
     ASSERT_EQ(expectedEncoding, actualEncoding);
     expectedEncoding = { 0xE2, 0x82, 0xAC };
-    actualEncoding = utf8.Encode({0x20AC}); // €.
+    actualEncoding = utf8.Encode({0x20AC}); // €
     ASSERT_EQ(expectedEncoding, actualEncoding);
 }
 
