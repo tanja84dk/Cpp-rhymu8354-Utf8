@@ -41,7 +41,7 @@ TEST(Utf8Tests, EncodeJapanese) {
     ASSERT_EQ(expectedEncoding, actualEncoding);
 }
 
-TEST(Utf8Tests, StumpOfTree) {
+TEST(Utf8Tests, StumpOfTreeEncoding) {
     Utf8::Utf8 utf8;
     const std::vector< uint8_t > expectedEncoding{ 0xF0, 0xA3, 0x8E, 0xB4 };
     const auto actualEncoding = utf8.Encode({0x233B4}); // 𣎴
@@ -142,7 +142,7 @@ TEST(Utf8Tests, StumpOfTreeDecodedInTwoParts) {
         utf8.Decode(firstHalfOfEncoding)
     );
     ASSERT_EQ(
-        (std::vector< Utf8::UnicodeCodePoint >{0x233B4}), // ð£´
+        (std::vector< Utf8::UnicodeCodePoint >{0x233B4}), // 𣎴
         utf8.Decode(lastHalfOfEncoding)
     );
 }
