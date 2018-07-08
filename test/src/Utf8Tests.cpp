@@ -41,21 +41,21 @@ TEST(Utf8Tests, EncodeJapanese) {
     ASSERT_EQ(expectedEncoding, actualEncoding);
 }
 
-TEST(Utf8Test, StumpOfTree) {
+TEST(Utf8Tests, StumpOfTree) {
     Utf8::Utf8 utf8;
     const std::vector< uint8_t > expectedEncoding{ 0xF0, 0xA3, 0x8E, 0xB4 };
     const auto actualEncoding = utf8.Encode({0x233B4}); // 𣎴
     ASSERT_EQ(expectedEncoding, actualEncoding);
 }
 
-TEST(Utf8Test, CodePointBeyondEndOfLastValidRange) {
+TEST(Utf8Tests, CodePointBeyondEndOfLastValidRange) {
     Utf8::Utf8 utf8;
     const std::vector< uint8_t > replacementCharacterEncoding{ 0xEF, 0xBF, 0xBD };
     ASSERT_EQ(replacementCharacterEncoding, utf8.Encode({0x200000}));
     ASSERT_EQ(replacementCharacterEncoding, utf8.Encode({0x110000}));
 }
 
-TEST(Utf8Test, HighAndLowSurrogateHalvesAreInvalid) {
+TEST(Utf8Tests, HighAndLowSurrogateHalvesAreInvalid) {
     Utf8::Utf8 utf8;
     const std::vector< uint8_t > replacementCharacterEncoding{ 0xEF, 0xBF, 0xBD };
     ASSERT_EQ((std::vector< uint8_t >{0xED, 0x9F, 0xBF}), utf8.Encode({0xD7FF}));
@@ -68,7 +68,7 @@ TEST(Utf8Test, HighAndLowSurrogateHalvesAreInvalid) {
     ASSERT_EQ((std::vector< uint8_t >{0xEE, 0x80, 0x80}), utf8.Encode({0xE000}));
 }
 
-TEST(Utf8Test, DecodeValidSequences) {
+TEST(Utf8Tests, DecodeValidSequences) {
     struct TestVector {
         std::string encoding;
         std::vector< Utf8::UnicodeCodePoint > expectedDecoding;
@@ -87,7 +87,7 @@ TEST(Utf8Test, DecodeValidSequences) {
     }
 }
 
-TEST(Utf8Test, DecodeFromInputVector) {
+TEST(Utf8Tests, DecodeFromInputVector) {
     Utf8::Utf8 utf8;
     const auto actualDecoding = utf8.Decode(std::vector< uint8_t >{0xE6, 0x97, 0xA5, 0xE6, 0x9C, 0xAC, 0xE8, 0xAA, 0x9E});
     ASSERT_EQ((std::vector< Utf8::UnicodeCodePoint >{0x65E5, 0x672C, 0x8A9E}), actualDecoding);
