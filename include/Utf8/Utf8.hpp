@@ -66,7 +66,7 @@ namespace Utf8 {
          * @return
          *     The UTF-8 encoding of the given Unicode code points is returned.
          */
-        std::vector< uint8_t > Encode(const std::vector< UnicodeCodePoint >& codePoints);
+        static std::vector< uint8_t > Encode(const std::vector< UnicodeCodePoint >& codePoints);
 
         // Private properties
     private:
