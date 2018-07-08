@@ -15,7 +15,7 @@ namespace {
     /**
      * This is the Unicode replacement character (�) encoded as UTF-8.
      */
-    const std::vector< Utf8::UnicodeCodePoint > UTF8_ENCODED_REPLACEMENT_CHARACTER = {0xEF, 0xBF, 0xBD};
+    const std::vector< uint8_t > UTF8_ENCODED_REPLACEMENT_CHARACTER = {0xEF, 0xBF, 0xBD};
 
     /**
      * Since RFC 3629 (November 2003), the high and low surrogate halves
