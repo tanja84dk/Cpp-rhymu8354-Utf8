@@ -146,3 +146,16 @@ TEST(Utf8Tests, StumpOfTreeDecodedInTwoParts) {
         utf8.Decode(lastHalfOfEncoding)
     );
 }
+
+TEST(Utf8Tests, IsValidEncoding) {
+    Utf8::Utf8 utf8;
+    EXPECT_TRUE(utf8.IsValidEncoding("abc"));
+    EXPECT_TRUE(utf8.IsValidEncoding("𣎴"));
+    EXPECT_TRUE(utf8.IsValidEncoding("A≢�"));
+    EXPECT_FALSE(utf8.IsValidEncoding("\x41\xE2\x89\xA2\xCE\x2E"));
+    EXPECT_FALSE(utf8.IsValidEncoding("\xE6\x97\xA5\xE6\x9C\xAC\xE8\xAA"));
+    EXPECT_TRUE(utf8.IsValidEncoding("\xE6\x97\xA5\xE6\x9C\xAC\xE8", false));
+    EXPECT_FALSE(utf8.IsValidEncoding("\xAA"));
+    EXPECT_TRUE(utf8.IsValidEncoding("A≢", false));
+    EXPECT_TRUE(utf8.IsValidEncoding("�"));
+}

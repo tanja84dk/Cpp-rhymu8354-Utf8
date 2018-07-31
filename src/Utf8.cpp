@@ -87,6 +87,12 @@ namespace Utf8 {
          * make up the current character being decoded.
          */
         size_t bytesTotalToDecodeCurrentCharacter = 0;
+
+        /**
+         * This flag indicates whether or not the encoded UTF-8
+         * sequence decoded so far is valid.
+         */
+        bool isValidEncoding = true;
     };
 
     Utf8::~Utf8() = default;
@@ -156,10 +162,12 @@ namespace Utf8 {
                     impl_->currentCharacterBeingDecoded = (octet & 0x07);
                 } else {
                     output.push_back(REPLACEMENT_CHARACTER);
+                    impl_->isValidEncoding = false;
                 }
                 impl_->bytesTotalToDecodeCurrentCharacter = impl_->numBytesRemainingToDecode + 1;
             } else if ((octet & 0xC0) != 0x80) {
                 output.push_back(REPLACEMENT_CHARACTER);
+                impl_->isValidEncoding = false;
                 impl_->numBytesRemainingToDecode = 0;
                 const auto nextCodePoints = Decode(std::vector< uint8_t >{ octet });
                 output.insert(
@@ -186,6 +194,7 @@ namespace Utf8 {
                         )
                     ) {
                         output.push_back(REPLACEMENT_CHARACTER);
+                        impl_->isValidEncoding = false;
                     } else {
                         output.push_back(impl_->currentCharacterBeingDecoded);
                     }
@@ -204,4 +213,21 @@ namespace Utf8 {
             )
         );
     }
+
+    bool Utf8::IsValidEncoding(
+        const std::string& encoding,
+        bool final
+    ) {
+        (void)Decode(encoding);
+        auto wasValidEncoding = impl_->isValidEncoding;
+        if (final) {
+            if (impl_->numBytesRemainingToDecode > 0) {
+                wasValidEncoding = false;
+            }
+            impl_->isValidEncoding = true;
+            impl_->numBytesRemainingToDecode = 0;
+        }
+        return wasValidEncoding;
+    }
+
 }

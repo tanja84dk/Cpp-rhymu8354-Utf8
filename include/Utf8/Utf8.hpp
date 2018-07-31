@@ -104,6 +104,29 @@ namespace Utf8 {
          */
         std::vector< UnicodeCodePoint > Decode(const std::string& encoding);
 
+        /**
+         * This method accepts the given sequence of UTF-8 encoded bytes,
+         * and returns an indication of whether or not the encoding is valid.
+         *
+         * @param[in] encoding
+         *     This is the sequence of UTF-8 encoded bytes to shift into
+         *     the decoder.
+         *
+         * @param[in] final
+         *     This flag indicates whether or not this is the end of the
+         *     encoding.  If it is not, any partial code sequence at the end
+         *     is held onto and used first when this method is called
+         *     again later.
+         *
+         * @return
+         *     An indication of whether or not the encoding is valid
+         *     is returned.
+         */
+        bool IsValidEncoding(
+            const std::string& encoding,
+            bool final = true
+        );
+
         // Private properties
     private:
         /**
