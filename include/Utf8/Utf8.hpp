@@ -43,11 +43,11 @@ namespace Utf8 {
     class Utf8 {
         // Lifecycle management
     public:
-        ~Utf8();
+        ~Utf8() noexcept;
         Utf8(const Utf8&) = delete;
-        Utf8(Utf8&&) = delete;
+        Utf8(Utf8&&) noexcept = delete;
         Utf8& operator=(const Utf8&) = delete;
-        Utf8& operator=(Utf8&&) = delete;
+        Utf8& operator=(Utf8&&) noexcept = delete;
 
         // Public methods
     public:
