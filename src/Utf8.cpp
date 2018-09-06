@@ -95,7 +95,7 @@ namespace Utf8 {
         bool isValidEncoding = true;
     };
 
-    Utf8::~Utf8() = default;
+    Utf8::~Utf8() noexcept = default;
 
     Utf8::Utf8()
         : impl_(new Impl)
