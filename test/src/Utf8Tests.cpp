@@ -15,6 +15,7 @@
 TEST(Utf8Tests, AsciiToUnicode) {
     const std::vector< Utf8::UnicodeCodePoint > expectedCodePoints{ 0x48, 0x65, 0x6C, 0x6C, 0x6F };
     const auto actualCodePoints = Utf8::AsciiToUnicode("Hello");
+    ASSERT_EQ(expectedCodePoints, actualCodePoints);
 }
 
 TEST(Utf8Tests, EncodeAscii) {
