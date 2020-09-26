@@ -1,4 +1,6 @@
 #![warn(clippy::pedantic)]
+#![allow(clippy::string_lit_as_bytes)]
+#![allow(clippy::non_ascii_literal)]
 
 #[cfg(test)]
 mod tests {
