@@ -1,5 +1,5 @@
 [package]
-name = "Utf8"
+name = "utf8"
 version = "0.1.0"
 authors = ["Richard Walters <rwalters@digitalstirling.com>"]
 edition = "2018"
