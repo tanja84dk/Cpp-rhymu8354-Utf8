@@ -190,11 +190,9 @@ mod tests {
         assert!(std::str::from_utf8("abc".as_bytes()).ok().is_some());
         assert!(std::str::from_utf8("𣎴".as_bytes()).ok().is_some());
         assert!(std::str::from_utf8("A≢�".as_bytes()).ok().is_some());
-        assert!(
-            std::str::from_utf8(b"\x41\xE2\x89\xA2\xCE\x2E")
+        assert!(std::str::from_utf8(b"\x41\xE2\x89\xA2\xCE\x2E")
             .ok()
-            .is_none()
-        );
+            .is_none());
         assert!(std::str::from_utf8(b"\xE6\x97\xA5\xE6\x9C\xAC\xE8\xAA")
             .ok()
             .is_none());
