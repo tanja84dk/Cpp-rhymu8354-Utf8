@@ -19,6 +19,7 @@ add_library(${PROJECT_NAME}
 )
 
 add_library(libs::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+add_library(rhymu8354::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 target_link_libraries(${PROJECT_NAME} ${Shared_Libraries} ${Static_Libraries})
 
